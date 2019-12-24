@@ -24,7 +24,8 @@ for fileName in fileList:
         root = tree.getroot() # 解析xml文件
         
         tag_path_text = root.find('path', namespaces=None).text # 获取标签为path的内容
-        new_tag_path_text = tag_path_text[-10:] # 取路径的六位序号和后缀名4位，即后10位
+        new_tag_path_text = "./" + "/".join((tag_path_text.split("/"))[-2:]) # 以/分割，取后两段
+        #new_tag_path_text = tag_path_text[-10:] # 取路径的六位序号和后缀名4位，即后10位
         new_tag_path_text = './' + new_tag_path_text
         root.find('path', namespaces=None).text = new_tag_path_text
         print('修改标签<path>:' + tag_path_text + '=====>' + new_tag_path_text)
